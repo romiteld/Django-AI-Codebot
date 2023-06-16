@@ -16,9 +16,6 @@
 <br />
 <br />
 
-
-
-
 <form method=POST action="{% url 'home' %}">
     {% csrf_token %}
 
@@ -42,15 +39,7 @@
 </form>
 <br />
 
-
-
-
-
-
-
-
 {% else %}
-
 
 <pre>
 <code class='line-numbers language-python'>
@@ -63,9 +52,6 @@ else:
 
 <br />
 <br />
-
-
-
 
 <form method=POST action="{% url 'home' %}">
     {% csrf_token %}

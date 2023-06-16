@@ -7,7 +7,7 @@ from .forms import SignUpForm
 from .models import Code
 
 def home(request):
-	lang_list = ['c', 'clike', 'cpp', 'csharp', 'css', 'dart', 'django', 'go', 'html', 'java', 'javascript', 'markup', 'markup-templating', 'matlab', 'mongodb', 'objectivec', 'perl', 'php', 'powershell', 'python', 'r', 'regex', 'ruby', 'rust', 'sass', 'scala', 'sql', 'swift', 'yaml']
+	lang_list = ['c', 'clike', 'cpp', 'csharp', 'css', 'dart', 'django', 'go', 'html', 'java', 'javascript', 'markup', 'markup-templating', 'matlab', 'mongodb', 'objectivec', 'perl', 'php', 'powershell', 'python', 'r', 'regex', 'ruby', 'rust', 'sass', 'scala', 'sql', 'swift', 'vba', 'yaml']
 
 	if request.method == "POST":
 		code = request.POST['code']
@@ -28,7 +28,7 @@ def home(request):
 					engine = 'text-davinci-003',
 					prompt = f"Respond only with code. Fix this {lang} code: {code}",
 					temperature = 0,
-					max_tokens = 4000,
+					max_tokens = 3000,
 					top_p=1.0,
 					frequency_penalty=0.0,
 					presence_penalty=0.0,
@@ -73,13 +73,13 @@ def suggest(request):
 					engine = 'text-davinci-003',
 					prompt = f"Respond only with code. Using {lang}. {code}",
 					temperature = 0,
-					max_tokens = 4000,
+					max_tokens = 3000,
 					top_p=1.0,
 					frequency_penalty=0.0,
 					presence_penalty=0.0,
 					)
 				# Parse the response
-				response = (response["choices"][0]["text"]).strip() # type: ignore
+				response = (response["choices"][0]["text"]).strip() 
 				
 				# Save To Database
 				record = Code(question=code, code_answer=response, language=lang, user=request.user)
